@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>IaaC</title>
+    <script type="text/javascript" src="js/jQuery.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script type="text/javascript" src="js/script.js"></script>
+    <link rel="shortcut icon" href="https://www.terraform.io/assets/images/og-image-f5bbc98c.png">
+    <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Franklin" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+</head>
+<body>
+  <header>
+        <img src="https://freezoneen.files.wordpress.com/2017/09/logo-50.png?w=816">
+        <h1>🖳Create your Azure virtual machine with Terraform🖳</h1>
+  </header>
+    <div class="box-container">
+        <div class="left-side">
+            <div class="container">
+                <div class="card card-container">
+                    <h4 class="input_title">Suscription</h4>
+                    <form name="regform" class="form-signin" target="dummyframe">
+
+                         <!-- Configure the Microsoft Azure Provider -->
+
+                        <p class="input_title ">Subscription ID</p>
+                        <input id="suscriptionId"  type="input_title" class="login_box" placeholder="Ingrese aquí" required>
+
+                        <p class="input_title">Client ID</p>
+                        <input id="clientId" type="input_title"" id="inputPassword" class="login_box" placeholder="Ingrese aquí" required>
+
+                        <p class="input_title">Client secret</p>
+                        <input id="clientSecret" type="input_title"" class="login_box" placeholder="Ingrese aquí" required>
+
+                        <p class="input_title">Tenant ID</p>
+                        <input id="tenantId" type="input_title" class="login_box" placeholder="Ingrese aquí" required>
+
+                        <!-- Create a resource group -->
+
+                        <h4 class="input_title">Create a resource group</h4>
+
+                        <p class="input_title ">Name</p>
+                        <input id="name" type="input_title" class="login_box" placeholder="Ingrese aquí" required>
+
+                        <p class="input_title ">Location</p>
+                        <input id="location" type="input_title" class="login_box" placeholder="Ingrese aquí" required>
+
+                         <!-- Create a virtual network -->
+
+                         <h4 class="input_title">Create a virtual network</h4>
+
+                        <p class="input_title ">Name</p>
+                        <input id="nameNet" type="input_title" class="login_box" placeholder="Ingrese aquí" required>
+
+                        <!-- Create Subnet -->
+
+                        <h4 class="input_title">Create Subnet</h4>
+
+                        <p class="input_title ">Name</p>
+                        <input id="nameSub" type="input_title" class="login_box" placeholder="Ingrese aquí" required>
+
+                        <!-- Create network interface para Ubuntu -->
+
+                        <h4 class="input_title">Create network interface para Ubuntu</h4>
+
+                        <p class="input_title">Name</p>
+                        <input id="nameInter" type="input_title" class="login_box" placeholder="Ingrese aquí" required>
+
+                        <p class="input_title">Name configuration</p>
+                        <input id="nameConf" type="input_title" class="login_box" placeholder="Ingrese aquí" required>
+
+                        <!-- Create virtual machine Ubuntu-->
+
+                        <h4 class="input_title">Create virtual machine Ubuntu</h4>
+
+                        <p class="input_title">Name</p>
+                        <input id="nameMV" type="input_title" class="login_box" placeholder="Ingrese aquí" required>
+
+                         <h4 class="input_title">Storage image</h4>
+
+                        <p class="input_title">Publisher</p>
+                        <input id="publisher" type="input_title" class="login_box" placeholder="Ingrese aquí" required>
+
+                        <p class="input_title">Offer</p>
+                        <input id="offer" type="input_title" class="login_box" placeholder="Ingrese aquí" required>
+
+                        <p class="input_title">Sku</p>
+                        <input id="sku" type="input_title" class="login_box" placeholder="Ingrese aquí" required>
+
+                        <h4 class="input_title">Profile</h4>
+
+                        <p class="input_title">Admin username</p>
+                        <input id="admin" type="input_title" class="login_box" placeholder="Ingrese aquí" required>
+
+                        <p class="input_title">Admin password</p>
+                        <input id="password" type="input_title" class="login_box" placeholder="Ingrese aquí" required>
+
+                        <button id="btnSend" class="btn btn-lg btn-primary">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="right-side">
+            <div class="right-content">
+                <!--Provider-->
+                <div>
+                    provider "azurerm" <span class="provider_text"></span> {<br>
+                    <span class="tab">subscription_id = <span class="suscriptionId_text"></span><br></span>
+                    <span class="tab">client_id       = <span class="clientId_text"></span><br></span>
+                    <span class="tab">client_secret   = <span class="clientSecret_text"></span><br></span>
+                    <span class="tab">tenant_id       = <span class="tenantId_text"></span><br>
+                    }
+                </div>
+                <!--Resource group-->
+                <div>
+                    resource <span class="resource_text"></span> nombre_del_recurso {<br>
+                    <span class="tab">name = <span class="name_text"></span><br></span>
+                    <span class="tab">location = <span class="location_text"></span><br></span>
+                    }
+                </div>
+                <!--Virtual network-->
+                <div>
+                    resource <span class="resourceNet_text"></span> nombre_del_recurso_network {<br>
+                    <span class="tab">name = <span class="nameNet_text"></span><br></span>
+                    <span class="tab">address_space = [<span class="address_text"></span>]<br></span>
+                    <span class="tab">location = <span class="location_text"></span><br></span>
+                    <span class="tab">resource_group_name = "${<span class="resource_text"></span>.nombre_del_recurso.<span class="name_text"></span>}"</span><br></span>
+                    }
+                </div>
+                <!--Subnet-->
+                <div>
+                    resource <span class="resourceSub_text"></span> nombre_del_recurso_subnet {<br>
+                    <span class="tab">name = <span class="nameSub_text"></span><br></span>
+                    <span class="tab">resource_group_name = "${<span class="resource_text"></span>.nombre_del_recurso.<span class="name_text"></span>}"<br></span>
+                    <span class="tab">virtual_network_name = "${<span class="resourceNet_text"></span>.nombre_del_recurso.<span class="nameSub_text"></span>}"<br>
+                    <span class="tab">address_prefix = <span class="addressPrefix_text"></span><br></span>
+                    }
+                </div>
+                <!--Public Ips-->
+                <div>
+                    resource <span class="resourceIP_text"></span> nombre_del_recurso_ips {<br>
+                    <span class="tab">name = <span class="nameIP_text"></span><br></span>
+                    <span class="tab">location = <span class="location_text"></span><br></span>
+                    <span class="tab">resource_group_name = "${<span class="resource_text"></span>.nombre_del_recurso.<span class="name_text"></span>}"</span><br></span>
+                    <span class="tab">public_ip_address_allocation = <span class="publicIP_text"></span><br></span>
+                    <span class="tab">tags {<br></span>
+                    <span class="tab"><span class="tab">environment = <span class="tag_text"><br></span></span>
+                    <span class="tab">}<br></span>
+                    }
+                </div>
+                <!--Ubuntu network interface-->
+                <div>
+                    resource <span class="resourceInter_text"></span> nombre_del_recurso_nic{<br>
+                    <span class="tab">name = <span class="nameInter_text"></span><br></span>
+                    <span class="tab">location = <span class="location_text"><br></span>
+                    <span class="tab">resource_group_name = "${<span class="resource_text"></span>.nombre_del_recurso.<span class="name_text"></span>}"</span><br></span>
+                    <span class="tab">ip_configuration {<br>
+                    <span class="tab"><span class="tab"></span>name =<span class="nameConf_text"></span></span><br></span>
+                    <span class="tab"><span class="tab"></span>subnet_id =<span class="nameIP_text"></span></span><br></span>
+                    <span class="tab"><span class="tab"></span>private_ip_address_allocation =<span class="privateIPAll_text"></span></span><br></span>
+                    <span class="tab"><span class="tab"></span>private_ip_address =<span class="privateIP_text"></span></span><br></span>
+                    <span class="tab"><span class="tab"></span>public_ip_address_id =<span class="resourceIP_text"></span>.nombre_del_recurso.id</span><br></span>}
+                </div>
+                <!--Storage account-->
+                <div>
+                    resource <span class="resourceStorage_text"></span> nombre_del_recurso_storage{<br>
+                    <span class="tab">name = <span class="nameStorage_text"></span><br></span>
+                    <span class="tab">resource_group_name = "${<span class="resource_text"></span>.nombre_del_recurso.<span class="name_text"></span>}"</span><br></span>
+                    <span class="tab">location = <span class="location_text"><br></span>
+                    <span class="tab">account_type = <span class="accountType_text"></span><br></span>
+                    <span class="tab">tags {<br></span>
+                    <span class="tab"><span class="tab">environment = <span class="tagStorage_text"><br></span></span>
+                    <span class="tab">}<br></span>}
+                </div>
+                <!--Storage account-->
+                <div>
+                    resource <span class="resourceStorage_text"></span> nombre_del_recurso_container{<br>
+                    <span class="tab">name = <span class="nameContainer_text"></span><br></span>
+                    <span class="tab">resource_group_name = "${<span class="resource_text"></span>.nombre_del_recurso.<span class="name_text"></span>}"</span><br></span>
+                    <span class="tab">storage_account_name = "${<span class="resourceStorage_text"></span>.nombre_del_recurso.<span class="name_text"></span>}"</span><br></span>
+                    <span class="tab">container_access_type = <span class="containerAccess_text"></span><br></span>
+                    <span class="tab">depends_on = "${<span class="resourceStorage_text"></span>.nombre_del_recurso}</span><br>}
+                </div>
+                <div>
+                    resource <span class="resourceStorage_text"></span> nombre_del_recurso_vm{<br>
+                    <span class="tab">name = <span class="nameMV_text"></span><br></span>
+                    <span class="tab">location = <span class="location_text"><br></span>
+                    <span class="tab">resource_group_name = "${<span class="resource_text"></span>.nombre_del_recurso.<span class="name_text"></span>}"</span><br></span>
+                    <span class="tab">network_interface_ids = "${<span class="resourceInter_text"></span>.nombre_del_recurso.<span class="name_text"></span>}"</span><br></span>
+                    <span class="tab">vm_size = <span class="vmSize_text"></span><br></span>
+                    <span class="tab">storage_image_reference  {<br>
+                        <span class="tab"><span class="tab"></span>publisher = "Canonical"</span><br>
+                        <span class="tab"><span class="tab"></span>offer = "UbuntuServer"</span><br>
+                        <span class="tab"><span class="tab"></span>sku = "14.04.2-LTS"</span><br>
+                        <span class="tab"><span class="tab"></span>version = "latest"</span><br>
+                    </span>
+                    <span class="tab">}</span>
+                    <span class="tab">storage_image_reference  {<br>
+                        <span class="tab"><span class="tab"></span>name = "myosdisk"</span><br>
+                        <span class="tab"><span class="tab"></span>vhd_uri = 
+                            <span class="tab">network_interface_ids = "${<span class="resourceStorage_text"></span>.primary_blob_endpoint</span>}"
+                            <span class="tab">network_interface_ids = "${<span class="resourceStorage_text"></span>.nombre_del_recurso_container.<span class="nameContainer_text">/myosdisk</span>}"</span>
+                        </span><br>
+                        <span class="tab"><span class="tab"></span>create_option = "FromImage"</span><br>
+                        <span class="tab">}</span><br>
+                    </span>
+                    <span class="tab">storage_image_reference  {<br>
+                        <span class="tab"><span class="tab"></span>computer_name = "hostname"</span></span><br>
+                        <span class="tab"><span class="tab"></span>admin_username = <span class="admin_text"></span></span><br>
+                        <span class="tab"><span class="tab"></span>admin_password = <span class="password_text"></span></span><br>
+                    </span>
+                    <span class="tab">os_profile_linux_config   {<br>
+                        <span class="tab"><span class="tab"></span>disable_password_authentication = false</span><br>
+                    </span>
+                    <span class="tab">tags {<br>
+                        <span class="tab"><span class="tab"></span>environment = "staging"</span></span><br>
+                        <span class="tab">}<br>
+                        <span class="tab">}<br>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
